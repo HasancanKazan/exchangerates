@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"strings"
 	"time"
 )
 
@@ -15,7 +16,6 @@ func (e ExchangeService) GetSeries(ctx context.Context, code string) ([]Serie, e
 }
 
 func ToSeries(tcmbSeries []SerieTCMBResponse) (serie []Serie) {
-
 	for idx, _ := range tcmbSeries {
 		tcmbSeries := &tcmbSeries[idx]
 		serie = append(serie, Serie{
@@ -36,10 +36,19 @@ func ToSeries(tcmbSeries []SerieTCMBResponse) (serie []Serie) {
 			RevPolLinkEng:       tcmbSeries.RevPolLinkEng,
 			AppChaLink:          tcmbSeries.AppChaLink,
 			AppChaLinkEng:       tcmbSeries.AppChaLinkEng,
-			StartDate:           time.Now(),
-			EndDate:             time.Now(),
+			StartDate:           ConvertStringToTime(tcmbSeries.StartDate),
+			EndDate:             ConvertStringToTime(tcmbSeries.EndDate),
 		})
 	}
-
 	return serie
+}
+
+func ConvertStringToTime(date string) time.Time {
+	sDate := strings.Split(date, "-")
+	formattedDate := sDate[2] + "-" + sDate[1] + "-" + sDate[0]
+	newDate, err := time.Parse("2006-01-02", formattedDate)
+	if err != nil {
+		return time.Now()
+	}
+	return newDate
 }

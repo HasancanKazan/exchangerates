@@ -17,9 +17,7 @@ func main() {
 		secretKey: TCMB_SECRET_KEY,
 	}
 	exchangeService := ExchangeService{tcmbClient}
-	handler := Handler{
-		exchangeService: exchangeService,
-	}
+	handler := Handler{exchangeService: exchangeService}
 
 	app.GET("/exchangerates", handler.getExchangeRate)
 	app.Logger.Fatal(app.Start(":8000"))
