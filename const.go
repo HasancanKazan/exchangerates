@@ -1,6 +1,10 @@
 package main
 
 const (
-	TCMB_SECRET_KEY      = "XXXXXXX"
-	TCMB_DATA_GROUPS_URL = "https://evds2.tcmb.gov.tr/service/evds/datagroups/key=CyD61AWVNS&mode=1&code=bie_dkdovytl&type=json"
+	TCMB_BASE_URL   = "https://evds2.tcmb.gov.tr/service/evds"
+	TCMB_SECRET_KEY = "CyD61AWVNS"
+	TCMB_DKDOV_CODE = "bie_dkdovytl"
+
+	TYPE_JSON = "&type=json"
+	TYPE_XML  = "&type=xml"
 )
