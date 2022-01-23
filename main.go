@@ -19,7 +19,7 @@ func main() {
 	exchangeService := ExchangeService{tcmbClient}
 	handler := Handler{exchangeService: exchangeService}
 
-	app.GET("/exchangerates", handler.getExchangeRate)
+	app.GET("/series", handler.getExchangeRate)
 	app.Logger.Fatal(app.Start(":8000"))
 }
 

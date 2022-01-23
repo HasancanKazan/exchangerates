@@ -10,17 +10,17 @@ type ExchangeService struct {
 	tcmbClient *TCMBClient
 }
 
-func (e ExchangeService) GetSeries(ctx context.Context, code string) ([]Serie, error) {
+func (e ExchangeService) GetSeries(ctx context.Context, code string) (Serie, error) {
 	res, err := e.tcmbClient.GetSeries(ctx, code)
 	return ToSeries(res), err
 }
 
 func ToSeries(tcmbSeries []SerieTCMBResponse) (serie Serie) {
+	serie.DatagroupCode = tcmbSeries[0].DatagroupCode
 	for idx, _ := range tcmbSeries {
 		tcmbSeries := &tcmbSeries[idx]
-		serie = append(serie.Serie, SerieDetail{
+		serie.Serie = append(serie.Serie, SerieDetail{
 			SerieCode:           tcmbSeries.SerieCode,
-			DatagroupCode:       tcmbSeries.DatagroupCode,
 			SerieName:           tcmbSeries.SerieName,
 			SerieNameEng:        tcmbSeries.SerieNameEng,
 			FrequencyStr:        tcmbSeries.FrequencyStr,
