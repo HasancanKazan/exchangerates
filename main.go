@@ -30,17 +30,3 @@ func (h Handler) getExchangeRate(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, res)
 }
-
-// func convertToSeriesResponseModel(series *[]serieTCMB) int {
-// 	serieList := new([]serie)
-
-// 	serieList = series
-// 	// for _, s := range *series {
-// 	// 	c := strings.Split(s.StartDate, "-")
-// 	// 	x := c[2] + "-" + c[1] + "-" + c[0]
-// 	// 	yourDate, _ := time.Parse("2006-01-02", x)
-// 	// 	serieList = append(serieList, )
-// 	// }
-
-// 	return 1
-// }

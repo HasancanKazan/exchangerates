@@ -15,10 +15,10 @@ func (e ExchangeService) GetSeries(ctx context.Context, code string) ([]Serie, e
 	return ToSeries(res), err
 }
 
-func ToSeries(tcmbSeries []SerieTCMBResponse) (serie []Serie) {
+func ToSeries(tcmbSeries []SerieTCMBResponse) (serie Serie) {
 	for idx, _ := range tcmbSeries {
 		tcmbSeries := &tcmbSeries[idx]
-		serie = append(serie, Serie{
+		serie = append(serie.Serie, SerieDetail{
 			SerieCode:           tcmbSeries.SerieCode,
 			DatagroupCode:       tcmbSeries.DatagroupCode,
 			SerieName:           tcmbSeries.SerieName,
@@ -46,7 +46,7 @@ func ToSeries(tcmbSeries []SerieTCMBResponse) (serie []Serie) {
 func ConvertStringToTime(date string) time.Time {
 	sDate := strings.Split(date, "-")
 	formattedDate := sDate[2] + "-" + sDate[1] + "-" + sDate[0]
-	newDate, err := time.Parse("2006-01-02", formattedDate)
+	newDate, err := time.Parse(TIME_LAYOUT, formattedDate)
 	if err != nil {
 		return time.Now()
 	}
