@@ -7,6 +7,6 @@ const (
 	TCMB_SECRET_KEY = "CyD61AWVNS"
 	TCMB_DKDOV_CODE = "bie_dkdovytl"
 
-	TYPE_JSON = "&type=json"
-	TYPE_XML  = "&type=xml"
+	TYPE_JSON = "json"
+	TYPE_XML  = "xml"
 )

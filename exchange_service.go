@@ -15,6 +15,14 @@ func (e ExchangeService) GetSeries(ctx context.Context, code string) (Serie, err
 	return ToSeries(res), err
 }
 
+func (e ExchangeService) GetAllSerieCodes(ctx context.Context, series Serie) string {
+	var allSeriCodes string
+	for _, serie := range series.Serie {
+		allSeriCodes += serie.SerieCode + "-"
+	}
+	return strings.TrimRight(allSeriCodes, "-")
+}
+
 func ToSeries(tcmbSeries []SerieTCMBResponse) (serie Serie) {
 	serie.DatagroupCode = tcmbSeries[0].DatagroupCode
 	for idx, _ := range tcmbSeries {
