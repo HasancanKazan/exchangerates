@@ -18,8 +18,8 @@ type (
 	}
 
 	TCMBRateResponseModel struct {
-		totalCount int `json:"totalCount,omitempty"`
-		// CurrencyRates []map[string]string `json:"items,omitempty"`
+		TotalCount    int                      `json:"totalCount,omitempty"`
+		CurrencyRates []map[string]interface{} `json:"items,omitempty"`
 	}
 )
 
@@ -36,7 +36,5 @@ func (t *TCMBRatesClient) GetRates(ctx context.Context, serieCodes string) (TCMB
 	body, _ := io.ReadAll(response.Body)
 
 	err = json.Unmarshal(body, &responseModel)
-	fmt.Println(responseModel)
-
 	return responseModel, err
 }
