@@ -53,7 +53,7 @@ func (h Handler) rates(c echo.Context) error {
 	}
 	serieCodes := h.exchangeService.GetAllSerieCodes(c.Request().Context(), res)
 
-	res2, err2 := h.rateService.GetSeries(c.Request().Context(), serieCodes)
+	res2, err2 := h.rateService.GetCurrencyRates(c.Request().Context(), serieCodes)
 	if err2 != nil {
 		return err
 	}
